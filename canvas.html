@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THI lihor (Glimmer&Charm)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid #000;
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+    <body>
+        <h2>Basic Shape</h2>
+        <canvas id="shapesCanvas" width="400" height="400"></canvas>
+
+        <script>
+            const canvas = document.getElementById("shapesCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Draw a rectangle
+            ctx.fillStyle = "#0077ff";
+            ctx.fillRect(150, 30, 100, 100); // x, y, width, height
+
+            // Draw a circle
+            ctx.beginPath();
+            ctx.arc(200, 200, 50, 0, 2 * Math.PI); // x, y, radius, startAngle, endAngle
+            ctx.fillStyle = "#00FF00";
+            ctx.fill();
+
+            // Draw a line
+            ctx.beginPath();
+            ctx.moveTo(100, 300); // Starting point (x, y)
+            ctx.lineTo(350, 300); // Ending point (x, y)
+            ctx.strokeStyle = "#DFFF00"; // Blue color
+            ctx.lineWidth = 10; // Line thickness
+            ctx.stroke();
+        </script>
+
+
+        <h1>Basic Drawing App</h1>
+        <canvas id="drawingCanvas" width="400" height="400"></canvas>
+
+        <script>
+            const d_canvas = document.getElementById("drawingCanvas");
+            const d_ctx = d_canvas.getContext("2d");
+
+            let drawing = false;
+
+            // Start drawing when the mouse is pressed
+            d_canvas.addEventListener("mousedown", function(event) {
+                drawing = true;
+                d_ctx.beginPath();
+                d_ctx.moveTo(event.offsetX, event.offsetY);
+            });
+
+            // Draw on the canvas when the mouse is moved
+            d_canvas.addEventListener("mousemove", function(event) {
+                if (drawing) {
+                    d_ctx.lineTo(event.offsetX, event.offsetY);
+                    d_ctx.stroke();
+                }
+            });
+
+            // Stop drawing when the mouse is released
+            d_canvas.addEventListener("mouseup", function() {
+                drawing = false;
+            });
+
+            // Stop drawing when the mouse leaves the canvas
+            d_canvas.addEventListener("mouseleave", function() {
+                drawing = false;
+            });
+        </script>
+
+
+    </body>
+</html>
